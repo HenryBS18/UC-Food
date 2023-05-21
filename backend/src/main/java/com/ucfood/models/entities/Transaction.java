@@ -7,6 +7,8 @@ import jakarta.persistence.Entity;
 import jakarta.persistence.GeneratedValue;
 import jakarta.persistence.GenerationType;
 import jakarta.persistence.Id;
+import jakarta.persistence.JoinColumn;
+import jakarta.persistence.ManyToOne;
 import jakarta.persistence.Table;
 
 @Entity
@@ -18,11 +20,13 @@ public class Transaction {
     @Column(name = "transaction_id")
     private int transactionID;
 
-    @Column(name = "restaurant_id")
-    private int restaurantID;
+    @ManyToOne
+    @JoinColumn(name = "restaurant_id")
+    private Restaurant restaurant;
 
-    @Column(name = "customer_id")
-    private int customerID;
+    @ManyToOne
+    @JoinColumn(name = "customer_id")
+    private Customer customer;
 
     @Column(name = "transaction_status")
     private String transactionStatus;
@@ -30,11 +34,11 @@ public class Transaction {
     @Column(name = "transaction_datetime")
     private LocalDateTime transactionDateTime;
 
-    public Transaction(int transactionID, int restaurantID, int customerID, String transactionStatus,
+    public Transaction(int transactionID, Restaurant restaurant, Customer customer, String transactionStatus,
             LocalDateTime transactionDateTime) {
         this.transactionID = transactionID;
-        this.restaurantID = restaurantID;
-        this.customerID = customerID;
+        this.restaurant = restaurant;
+        this.customer = customer;
         this.transactionStatus = transactionStatus;
         this.transactionDateTime = transactionDateTime;
     }
@@ -47,20 +51,20 @@ public class Transaction {
         this.transactionID = transactionID;
     }
 
-    public int getRestaurantID() {
-        return restaurantID;
+    public Restaurant getRestaurant() {
+        return restaurant;
     }
 
-    public void setRestaurantID(int restaurantID) {
-        this.restaurantID = restaurantID;
+    public void setRestaurant(Restaurant restaurant) {
+        this.restaurant = restaurant;
     }
 
-    public int getCustomerID() {
-        return customerID;
+    public Customer getCustomer() {
+        return customer;
     }
 
-    public void setCustomerID(int customerID) {
-        this.customerID = customerID;
+    public void setCustomer(Customer customer) {
+        this.customer = customer;
     }
 
     public String getTransactionStatus() {

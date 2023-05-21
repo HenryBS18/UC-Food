@@ -5,6 +5,7 @@ import jakarta.persistence.Entity;
 import jakarta.persistence.GeneratedValue;
 import jakarta.persistence.GenerationType;
 import jakarta.persistence.Id;
+import jakarta.persistence.Lob;
 import jakarta.persistence.Table;
 
 @Entity
@@ -34,11 +35,12 @@ public class Restaurant {
     @Column(name = "restaurant_description")
     private String restaurantDescription;
 
+    @Lob
     @Column(name = "restaurant_profil_picture")
-    private String restaurantProfilPicture;
+    private Byte[] restaurantProfilPicture;
 
     public Restaurant(int restaurantID, String ownerName, String email, String phoneNumber, String password,
-            String restaurantName, String restaurantDescription, String restaurantProfilPicture) {
+            String restaurantName, String restaurantDescription, Byte[] restaurantProfilPicture) {
         this.restaurantID = restaurantID;
         this.ownerName = ownerName;
         this.email = email;
@@ -105,11 +107,11 @@ public class Restaurant {
         this.restaurantDescription = restaurantDescription;
     }
 
-    public String getRestaurantProfilPicture() {
+    public Byte[] getRestaurantProfilPicture() {
         return restaurantProfilPicture;
     }
 
-    public void setRestaurantProfilPicture(String restaurantProfilPicture) {
+    public void setRestaurantProfilPicture(Byte[] restaurantProfilPicture) {
         this.restaurantProfilPicture = restaurantProfilPicture;
     }
 

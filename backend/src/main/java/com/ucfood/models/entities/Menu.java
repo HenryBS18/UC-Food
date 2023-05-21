@@ -1,10 +1,17 @@
 package com.ucfood.models.entities;
 
 import jakarta.persistence.Column;
+import jakarta.persistence.Entity;
 import jakarta.persistence.GeneratedValue;
 import jakarta.persistence.GenerationType;
 import jakarta.persistence.Id;
+import jakarta.persistence.JoinColumn;
+import jakarta.persistence.Lob;
+import jakarta.persistence.ManyToOne;
+import jakarta.persistence.Table;
 
+@Entity
+@Table(name = "menu")
 public class Menu {
 
     @Id
@@ -12,18 +19,20 @@ public class Menu {
     @Column(name = "menu_id")
     private int menuID;
 
-    @Column(name = "restaurant_id")
-    private int restaurantID;
+    @ManyToOne
+    @JoinColumn(name = "restaurant_id")
+    private Restaurant restaurant;
 
     @Column(name = "menu_name")
     private String menuName;
 
+    @Lob
     @Column(name = "menu_image")
-    private String menuImage;
+    private Byte[] menuImage;
 
-    public Menu(int menuID, int restaurantID, String menuName, String menuImage) {
+    public Menu(int menuID, Restaurant restaurant, String menuName, Byte[] menuImage) {
         this.menuID = menuID;
-        this.restaurantID = restaurantID;
+        this.restaurant = restaurant;
         this.menuName = menuName;
         this.menuImage = menuImage;
     }
@@ -36,12 +45,12 @@ public class Menu {
         this.menuID = menuID;
     }
 
-    public int getRestaurantID() {
-        return restaurantID;
+    public Restaurant getRestaurant() {
+        return restaurant;
     }
 
-    public void setRestaurantID(int restaurantID) {
-        this.restaurantID = restaurantID;
+    public void setRestaurant(Restaurant restaurant) {
+        this.restaurant = restaurant;
     }
 
     public String getMenuName() {
@@ -52,11 +61,11 @@ public class Menu {
         this.menuName = menuName;
     }
 
-    public String getMenuImage() {
+    public Byte[] getMenuImage() {
         return menuImage;
     }
 
-    public void setMenuImage(String menuImage) {
+    public void setMenuImage(Byte[] menuImage) {
         this.menuImage = menuImage;
     }
 

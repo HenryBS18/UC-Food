@@ -5,6 +5,8 @@ import jakarta.persistence.Entity;
 import jakarta.persistence.GeneratedValue;
 import jakarta.persistence.GenerationType;
 import jakarta.persistence.Id;
+import jakarta.persistence.JoinColumn;
+import jakarta.persistence.OneToOne;
 import jakarta.persistence.Table;
 
 @Entity
@@ -16,12 +18,13 @@ public class CustomerCart {
     @Column(name = "customer_cart_id")
     private int customerCartID;
 
-    @Column(name = "customer_id")
-    private int customerID;
+    @OneToOne
+    @JoinColumn(name = "customer_id")
+    private Customer customer;
 
-    public CustomerCart(int customerCartID, int customerID) {
+    public CustomerCart(int customerCartID, Customer customer) {
         this.customerCartID = customerCartID;
-        this.customerID = customerID;
+        this.customer = customer;
     }
 
     public int getCustomerCartID() {
@@ -32,12 +35,12 @@ public class CustomerCart {
         this.customerCartID = customerCartID;
     }
 
-    public int getCustomerID() {
-        return customerID;
+    public Customer getCustomer() {
+        return customer;
     }
 
-    public void setCustomerID(int customerID) {
-        this.customerID = customerID;
+    public void setCustomer(Customer customer) {
+        this.customer = customer;
     }
 
 }
