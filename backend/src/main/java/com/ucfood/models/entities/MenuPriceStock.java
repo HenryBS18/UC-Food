@@ -6,9 +6,15 @@ import jakarta.persistence.Id;
 import jakarta.persistence.JoinColumn;
 import jakarta.persistence.ManyToOne;
 import jakarta.persistence.Table;
+import lombok.Getter;
+import lombok.NoArgsConstructor;
+import lombok.Setter;
 
 @Entity
 @Table(name = "menu_price_stock")
+@Getter
+@Setter
+@NoArgsConstructor
 public class MenuPriceStock {
 
     @Id
@@ -25,30 +31,6 @@ public class MenuPriceStock {
     public MenuPriceStock(Menu menu, int price, int stockQuantity) {
         this.menu = menu;
         this.price = price;
-        this.stockQuantity = stockQuantity;
-    }
-
-    public Menu getMenu() {
-        return menu;
-    }
-
-    public void setMenu(Menu menu) {
-        this.menu = menu;
-    }
-
-    public int getPrice() {
-        return price;
-    }
-
-    public void setPrice(int price) {
-        this.price = price;
-    }
-
-    public int getStockQuantity() {
-        return stockQuantity;
-    }
-
-    public void setStockQuantity(int stockQuantity) {
         this.stockQuantity = stockQuantity;
     }
 

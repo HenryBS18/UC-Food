@@ -7,9 +7,16 @@ import jakarta.persistence.GenerationType;
 import jakarta.persistence.Id;
 import jakarta.persistence.Lob;
 import jakarta.persistence.Table;
+import jakarta.validation.constraints.NotEmpty;
+import lombok.Getter;
+import lombok.NoArgsConstructor;
+import lombok.Setter;
 
 @Entity
 @Table(name = "restaurant")
+@Getter
+@Setter
+@NoArgsConstructor
 public class Restaurant {
 
     @Id
@@ -17,18 +24,23 @@ public class Restaurant {
     @Column(name = "restaurant_id")
     private int restaurantID;
 
+    @NotEmpty(message = "Owner Name is required")
     @Column(name = "owner_name")
     private String ownerName;
 
-    @Column(name = "email")
+    @NotEmpty(message = "Email is required")
+    @Column(name = "email", unique = true)
     private String email;
 
-    @Column(name = "phone_number")
+    @NotEmpty(message = "Phone Number is required")
+    @Column(name = "phone_number", length = 13)
     private String phoneNumber;
 
+    @NotEmpty(message = "Password is required")
     @Column(name = "password")
     private String password;
 
+    @NotEmpty(message = "Restaurant Name is required")
     @Column(name = "restaurant_name")
     private String restaurantName;
 
@@ -36,11 +48,11 @@ public class Restaurant {
     private String restaurantDescription;
 
     @Lob
-    @Column(name = "restaurant_profil_picture")
-    private Byte[] restaurantProfilPicture;
+    @Column(name = "restaurant_profile_picture", length = 25000000, nullable = true)
+    private byte[] restaurantProfilePicture;
 
     public Restaurant(int restaurantID, String ownerName, String email, String phoneNumber, String password,
-            String restaurantName, String restaurantDescription, Byte[] restaurantProfilPicture) {
+            String restaurantName, String restaurantDescription, byte[] restaurantProfilePicture) {
         this.restaurantID = restaurantID;
         this.ownerName = ownerName;
         this.email = email;
@@ -48,71 +60,7 @@ public class Restaurant {
         this.password = password;
         this.restaurantName = restaurantName;
         this.restaurantDescription = restaurantDescription;
-        this.restaurantProfilPicture = restaurantProfilPicture;
-    }
-
-    public int getRestaurantID() {
-        return restaurantID;
-    }
-
-    public void setRestaurantID(int restaurantID) {
-        this.restaurantID = restaurantID;
-    }
-
-    public String getOwnerName() {
-        return ownerName;
-    }
-
-    public void setOwnerName(String ownerName) {
-        this.ownerName = ownerName;
-    }
-
-    public String getEmail() {
-        return email;
-    }
-
-    public void setEmail(String email) {
-        this.email = email;
-    }
-
-    public String getPhoneNumber() {
-        return phoneNumber;
-    }
-
-    public void setPhoneNumber(String phoneNumber) {
-        this.phoneNumber = phoneNumber;
-    }
-
-    public String getPassword() {
-        return password;
-    }
-
-    public void setPassword(String password) {
-        this.password = password;
-    }
-
-    public String getRestaurantName() {
-        return restaurantName;
-    }
-
-    public void setRestaurantName(String restaurantName) {
-        this.restaurantName = restaurantName;
-    }
-
-    public String getRestaurantDescription() {
-        return restaurantDescription;
-    }
-
-    public void setRestaurantDescription(String restaurantDescription) {
-        this.restaurantDescription = restaurantDescription;
-    }
-
-    public Byte[] getRestaurantProfilPicture() {
-        return restaurantProfilPicture;
-    }
-
-    public void setRestaurantProfilPicture(Byte[] restaurantProfilPicture) {
-        this.restaurantProfilPicture = restaurantProfilPicture;
+        this.restaurantProfilePicture = restaurantProfilePicture;
     }
 
 }

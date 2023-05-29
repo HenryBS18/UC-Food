@@ -6,9 +6,15 @@ import jakarta.persistence.Id;
 import jakarta.persistence.JoinColumn;
 import jakarta.persistence.ManyToOne;
 import jakarta.persistence.Table;
+import lombok.Getter;
+import lombok.NoArgsConstructor;
+import lombok.Setter;
 
 @Entity
 @Table(name = "customer_cart_items")
+@Getter
+@Setter
+@NoArgsConstructor
 public class CustomerCartItems {
 
     @Id
@@ -26,30 +32,6 @@ public class CustomerCartItems {
     public CustomerCartItems(CustomerCart customerCart, Menu menu, int itemQuantity) {
         this.customerCart = customerCart;
         this.menu = menu;
-        ItemQuantity = itemQuantity;
-    }
-
-    public CustomerCart getCustomerCart() {
-        return customerCart;
-    }
-
-    public void setCustomerCart(CustomerCart customerCart) {
-        this.customerCart = customerCart;
-    }
-
-    public Menu getMenu() {
-        return menu;
-    }
-
-    public void setMenu(Menu menu) {
-        this.menu = menu;
-    }
-
-    public int getItemQuantity() {
-        return ItemQuantity;
-    }
-
-    public void setItemQuantity(int itemQuantity) {
         ItemQuantity = itemQuantity;
     }
 

@@ -6,9 +6,15 @@ import jakarta.persistence.Id;
 import jakarta.persistence.JoinColumn;
 import jakarta.persistence.ManyToOne;
 import jakarta.persistence.Table;
+import lombok.Getter;
+import lombok.NoArgsConstructor;
+import lombok.Setter;
 
 @Entity
 @Table(name = "transaction_items")
+@Getter
+@Setter
+@NoArgsConstructor
 public class TransactionItems {
 
     @Id
@@ -26,30 +32,6 @@ public class TransactionItems {
     public TransactionItems(Transaction transaction, Menu menu, int itemQuantity) {
         this.transaction = transaction;
         this.menu = menu;
-        ItemQuantity = itemQuantity;
-    }
-
-    public Transaction getTransaction() {
-        return transaction;
-    }
-
-    public void setTransaction(Transaction transaction) {
-        this.transaction = transaction;
-    }
-
-    public Menu getMenu() {
-        return menu;
-    }
-
-    public void setMenu(Menu menu) {
-        this.menu = menu;
-    }
-
-    public int getItemQuantity() {
-        return ItemQuantity;
-    }
-
-    public void setItemQuantity(int itemQuantity) {
         ItemQuantity = itemQuantity;
     }
 
