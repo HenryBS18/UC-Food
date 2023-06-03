@@ -27,8 +27,8 @@ public class CustomerService {
         return customerRepo.save(customer);
     }
 
-    public Customer getCustomerByID(int id) {
-        return customerRepo.findById(id).get();
+    public Optional<Customer> getCustomerByID(int id) {
+        return customerRepo.findById(id);
     }
 
     public Iterable<Customer> getAllCustomer() {
