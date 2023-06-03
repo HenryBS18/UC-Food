@@ -34,14 +34,22 @@ public class Menu {
     @Column(name = "menu_name")
     private String menuName;
 
+    @Column(name = "menu_price")
+    private int price;
+
+    @Column(name = "menu_stock")
+    private int stock;
+
     @Lob
-    @Column(name = "menu_image")
+    @Column(name = "menu_image", length = 25000000, nullable = true)
     private byte[] menuImage;
 
-    public Menu(int menuID, Restaurant restaurant, String menuName, byte[] menuImage) {
+    public Menu(int menuID, Restaurant restaurant, String menuName, int price, int stock, byte[] menuImage) {
         this.menuID = menuID;
         this.restaurant = restaurant;
         this.menuName = menuName;
+        this.price = price;
+        this.stock = stock;
         this.menuImage = menuImage;
     }
 
