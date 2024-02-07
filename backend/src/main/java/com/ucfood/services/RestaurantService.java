@@ -18,12 +18,23 @@ public class RestaurantService {
     @Autowired
     private RestaurantRepo restaurantRepo;
 
-    public Restaurant createRestaurant(Restaurant restaurant) {
-        Optional<Restaurant> email = restaurantRepo.findByEmail(restaurant.getEmail());
+    public Restaurant createRestaurant(String ownerName, String email, String phoneNumber, String password,
+            String restaurantName, String restaurantDescription, byte[] profilePicture) {
+        Optional<Restaurant> emailCheck = restaurantRepo.findByEmail(email);
 
-        if (email.isPresent()) {
+        if (emailCheck.isPresent()) {
             return null;
         }
+
+        Restaurant restaurant = new Restaurant(
+                0,
+                ownerName,
+                email,
+                phoneNumber,
+                password,
+                restaurantName,
+                restaurantDescription,
+                profilePicture);
 
         return restaurantRepo.save(restaurant);
     }

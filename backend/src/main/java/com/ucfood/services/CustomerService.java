@@ -17,12 +17,19 @@ public class CustomerService {
     @Autowired
     private CustomerRepo customerRepo;
 
-    public Customer createCustomer(Customer customer) {
-        Optional<Customer> email = customerRepo.findByEmail(customer.getEmail());
+    public Customer createCustomer(String name, String email, String phoneNumber, String password) {
+        Optional<Customer> emailCheck = customerRepo.findByEmail(email);
 
-        if (email.isPresent()) {
+        if (emailCheck.isPresent()) {
             return null;
         }
+
+        Customer customer = new Customer(
+                0,
+                name,
+                email,
+                phoneNumber,
+                password);
 
         return customerRepo.save(customer);
     }

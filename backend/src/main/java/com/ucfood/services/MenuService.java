@@ -20,7 +20,15 @@ public class MenuService {
     @Autowired
     private MenuRepo menuRepo;
 
-    public Menu createMenu(Menu menu) {
+    public Menu createMenu(Restaurant restaurant, String menuName, int price, int stock, byte[] menuImage) {
+        Menu menu = new Menu(
+                0,
+                restaurant,
+                menuName,
+                price,
+                stock,
+                menuImage);
+
         return menuRepo.save(menu);
     }
 
@@ -32,7 +40,15 @@ public class MenuService {
         return menuRepo.findByRestaurant(restaurant);
     }
 
-    public Menu updateMenu(Menu menu) {
+    public Menu updateMenu(int menuID, Restaurant restaurant, String menuName, int price, int stock, byte[] menuImage) {
+        Menu menu = new Menu(
+                menuID,
+                restaurant,
+                menuName,
+                price,
+                stock,
+                menuImage);
+
         return menuRepo.save(menu);
     }
 
