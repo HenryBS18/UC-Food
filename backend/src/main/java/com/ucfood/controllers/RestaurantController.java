@@ -1,5 +1,6 @@
 package com.ucfood.controllers;
 
+import java.io.IOException;
 import java.util.ArrayList;
 import java.util.List;
 import java.util.Optional;
@@ -12,15 +13,17 @@ import org.springframework.web.bind.annotation.DeleteMapping;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.PutMapping;
-import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
+import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.RestController;
+import org.springframework.web.multipart.MultipartFile;
 
 import com.ucfood.dto.ResponseData;
 import com.ucfood.dto.restaurant.RestaurantData;
 import com.ucfood.dto.restaurant.RestaurantListData;
 import com.ucfood.models.entities.Restaurant;
 import com.ucfood.services.RestaurantService;
+import com.ucfood.utils.ImageConverter;
 
 @RestController
 @RequestMapping("api/restaurant")
@@ -95,20 +98,47 @@ public class RestaurantController {
         return ResponseEntity.ok(responseData);
     }
 
-    @PutMapping
-    public ResponseEntity<ResponseData<RestaurantListData>> updateRestaurant(@RequestBody Restaurant restaurant) {
+    @PutMapping("/{id}/profile")
+    public ResponseEntity<ResponseData<RestaurantListData>> updateRestaurant(
+            @PathVariable("id") int restaurantID,
+            @RequestParam String ownerName,
+            @RequestParam String email,
+            @RequestParam String phoneNumber,
+            @RequestParam String restaurantName,
+            @RequestParam String restaurantDescription,
+            @RequestParam MultipartFile restaurantProfilePicture) {
         ResponseData<RestaurantListData> responseData = new ResponseData<>();
         List<RestaurantData> result = new ArrayList<>();
 
         result.add(new RestaurantData(
-                restaurant.getRestaurantID(),
-                restaurant.getOwnerName(),
-                restaurant.getEmail(),
-                restaurant.getPhoneNumber(),
-                restaurant.getRestaurantName(),
-                restaurant.getRestaurantDescription()));
+                restaurantID,
+                ownerName,
+                email,
+                phoneNumber,
+                restaurantName,
+                restaurantDescription));
 
-        restaurantService.updateRestaurant(restaurant);
+        byte[] restaurantProfilePictureByte = null;
+
+        if (restaurantProfilePicture != null) {
+            try {
+                restaurantProfilePictureByte = ImageConverter.compressImage(restaurantProfilePicture.getBytes());
+            } catch (IOException e) {
+            }
+        }
+
+        Optional<Restaurant> restaurantOld = restaurantService.getRestaurantByID(restaurantID);
+
+        Restaurant restaurantNew = restaurantService.createRestaurant(
+                ownerName,
+                email,
+                phoneNumber,
+                restaurantOld.get().getPassword(),
+                restaurantName,
+                restaurantDescription,
+                restaurantProfilePictureByte);
+
+        restaurantService.updateRestaurant(restaurantNew);
         responseData.setStatus(true);
         responseData.setPayload(new RestaurantListData(result));
         return ResponseEntity.ok(responseData);

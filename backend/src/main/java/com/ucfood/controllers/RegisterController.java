@@ -6,10 +6,7 @@ import java.util.List;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.ResponseEntity;
-import org.springframework.validation.Errors;
-import org.springframework.validation.ObjectError;
 import org.springframework.web.bind.annotation.PostMapping;
-import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.RestController;
@@ -22,11 +19,10 @@ import com.ucfood.dto.restaurant.RestaurantData;
 import com.ucfood.dto.restaurant.RestaurantListData;
 import com.ucfood.models.entities.Customer;
 import com.ucfood.models.entities.Restaurant;
+import com.ucfood.services.CustomerCartService;
 import com.ucfood.services.CustomerService;
 import com.ucfood.services.RestaurantService;
 import com.ucfood.utils.ImageConverter;
-
-import jakarta.validation.Valid;
 
 @RestController
 @RequestMapping("/api/register")
@@ -37,6 +33,9 @@ public class RegisterController {
 
     @Autowired
     CustomerService customerService;
+
+    @Autowired
+    CustomerCartService customerCartService;
 
     @PostMapping("/restaurant")
     public ResponseEntity<ResponseData<RestaurantListData>> createRestaurant(
@@ -51,74 +50,64 @@ public class RegisterController {
         ResponseData<RestaurantListData> responseData = new ResponseData<>();
         List<RestaurantData> result = new ArrayList<>();
 
-        try {
-            byte[] restaurantProfilePictureByte = null;
+        byte[] restaurantProfilePictureByte = null;
 
-            if (restaurantProfilePicture != null) {
+        if (restaurantProfilePicture != null) {
+            try {
                 restaurantProfilePictureByte = ImageConverter.compressImage(restaurantProfilePicture.getBytes());
+            } catch (IOException e) {
             }
+        }
 
-            Restaurant restaurant = new Restaurant(0,
-                    ownerName,
-                    email,
-                    phoneNumber,
-                    password,
-                    restaurantName,
-                    restaurantDescription,
-                    restaurantProfilePictureByte);
+        Restaurant restaurant = restaurantService.createRestaurant(
+                ownerName,
+                email,
+                phoneNumber,
+                password,
+                restaurantName,
+                restaurantDescription,
+                restaurantProfilePictureByte);
 
-            Restaurant restaurantCheck = restaurantService.createRestaurant(restaurant);
-
-            if (restaurantCheck == null) {
-                responseData.setStatus(false);
-                responseData.getMessages().add("Email '" + restaurant.getEmail() + "' Already Used");
-
-                return ResponseEntity.badRequest().body(responseData);
-            }
-
-            result.add(new RestaurantData(
-                    restaurantCheck.getRestaurantID(),
-                    restaurantCheck.getOwnerName(),
-                    restaurantCheck.getEmail(),
-                    restaurantCheck.getPhoneNumber(),
-                    restaurantCheck.getRestaurantName(),
-                    restaurantCheck.getRestaurantDescription()));
-
-            responseData.setStatus(true);
-            responseData.getMessages().add("Create Account Success");
-            responseData.setPayload(new RestaurantListData(result));
-
-            return ResponseEntity.ok(responseData);
-        } catch (IOException e) {
+        if (restaurant == null) {
             responseData.setStatus(false);
-            responseData.getMessages().add("Create Account Failed");
+            responseData.getMessages().add("Email '" + email + "' Already Used");
 
             return ResponseEntity.badRequest().body(responseData);
         }
+
+        result.add(new RestaurantData(
+                restaurant.getRestaurantID(),
+                restaurant.getOwnerName(),
+                restaurant.getEmail(),
+                restaurant.getPhoneNumber(),
+                restaurant.getRestaurantName(),
+                restaurant.getRestaurantDescription()));
+
+        responseData.setStatus(true);
+        responseData.getMessages().add("Create Account Success");
+        responseData.setPayload(new RestaurantListData(result));
+
+        return ResponseEntity.ok(responseData);
     }
 
     @PostMapping("/customer")
     public ResponseEntity<ResponseData<CustomerListData>> createCustomer(
-            @Valid @RequestBody Customer customer,
-            Errors errors) {
-
+            @RequestParam String name,
+            @RequestParam String email,
+            @RequestParam String phoneNumber,
+            @RequestParam String password) {
         ResponseData<CustomerListData> responseData = new ResponseData<>();
         List<CustomerData> result = new ArrayList<>();
 
-        if (errors.hasErrors()) {
-            for (ObjectError error : errors.getAllErrors()) {
-                responseData.getMessages().add(error.getDefaultMessage());
-            }
-            responseData.setStatus(false);
-
-            return ResponseEntity.badRequest().body(responseData);
-        }
-
-        Customer customerCheck = customerService.createCustomer(customer);
+        Customer customerCheck = customerService.createCustomer(
+                name,
+                email,
+                phoneNumber,
+                password);
 
         if (customerCheck == null) {
             responseData.setStatus(false);
-            responseData.getMessages().add("Email '" + customer.getEmail() + "' Already Used");
+            responseData.getMessages().add("Email '" + email + "' Already Used");
 
             return ResponseEntity.badRequest().body(responseData);
         }
@@ -128,6 +117,9 @@ public class RegisterController {
                 customerCheck.getName(),
                 customerCheck.getEmail(),
                 customerCheck.getPhoneNumber()));
+
+        // Creata Customer Cart
+        customerCartService.createCustomerCart(customerCheck);
 
         responseData.setStatus(true);
         responseData.getMessages().add("Create Account Success");
