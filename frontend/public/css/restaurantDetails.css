@@ -1,0 +1,1399 @@
+* {
+  margin: 0;
+  padding: 0;
+  font-family: "Quicksand";
+  /* border: 1px solid black; */
+}
+
+body{
+  background-color: #f3f3f3;
+}
+
+header {
+  width: 100%;
+  position: fixed;
+  z-index: 10;
+  box-shadow: 0 2px 3px rgb(163, 163, 163);
+  background-color: #ffffff;
+  display: flex;
+  justify-content: center;
+}
+
+.headerItem {
+  width: calc(100vw - 80px);
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  flex-flow: row nowrap;
+  height: 140px;
+  background-color: #ffffff;
+}
+
+.container {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  gap: 1.5rem;
+  text-align: center;
+}
+
+a {
+  text-decoration: none;
+  color: inherit;
+}
+
+.logo {
+  width: 285px;
+  height: 100px;
+}
+
+.logo img {
+  width: 100%;
+}
+
+.search-container {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+.search-container i {
+  font-size: 20px;
+}
+
+.search-form {
+  position: relative;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+}
+
+.search-form input[type="text"] {
+  border: none;
+  border-radius: 20px;
+  background-color: #f5f5f5;
+  box-shadow: 0 2px 4px rgb(163, 163, 163);
+  width: 250px;
+  height: 46px;
+  transition: width 0.3s ease-in-out;
+  font-size: 16px;
+  padding-left: 12px;
+}
+
+.search-form input[type="text"]:focus {
+  width: 300px;
+}
+
+.search-form button {
+  border: none;
+  background-color: transparent;
+  cursor: pointer;
+  position: absolute;
+  right: 12px;
+  margin-top: 12px;
+}
+
+.search-form button i {
+  color: #9d9d9e;
+}
+
+.profile {
+  position: relative;
+  color: #090909;
+  cursor: pointer;
+}
+
+.profile a i {
+  font-size: 38px;
+}
+
+.profile p {
+  font-size: 16px;
+}
+
+.cart-container {
+  position: relative;
+}
+
+.cart {
+  width: 38px;
+  position: relative;
+  display: inline-flex;
+  align-items: center;
+  cursor: pointer;
+  color: #090909;
+  transition: color 0.3s ease;
+  display: grid;
+}
+
+.cart img {
+  width: 100%;
+}
+.isicart {
+  position: fixed;
+  top: 0;
+  right: -100%;
+  width: 360px;
+  height: 70vh;
+  padding: 20px;
+  box-shadow: -2px 0 4px hsl(0.4% 15% / 10%);
+  z-index: 10;
+  border-radius: 20px;
+  -webkit-backdrop-filter: blur(8px);
+  backdrop-filter: blur(8px);
+  box-shadow: 0px 10px 15px 10px rgb(0 0 0 / 15%);
+  background-color: rgb(228 228 228 / 15%);
+  transition: 0.3s;
+}
+
+.active {
+  right: 15 !important;
+  top: 20 !important;
+}
+
+.contenisicart {
+  display: flex;
+  justify-content: space-between;
+}
+
+.titleisicart {
+  font-size: 30px;
+  font-weight: bolder;
+}
+
+.tombolclose {
+  width: 20px;
+  cursor: pointer;
+}
+
+.isihistory {
+  position: fixed;
+  top: 0;
+  right: -200%;
+  width: 360px;
+  height: 70vh;
+  padding: 20px;
+  box-shadow: -2px 0 4px hsl(0.4% 15% / 10%);
+  z-index: 10;
+  border-radius: 20px;
+  -webkit-backdrop-filter: blur(8px);
+  backdrop-filter: blur(8px);
+  box-shadow: 0px 10px 15px 10px rgb(0 0 0 / 15%);
+  background-color: rgb(228 228 228 / 15%);
+  transition: 0.3s;
+}
+
+.gambarhistory {
+  width: 40px;
+  margin-left: 25px;
+}
+
+.detailhistory {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  padding-top: 20px;
+  width: 100%;
+}
+
+.notifications-container {
+  width: 320px;
+  height: auto;
+  font-size: 0.875rem;
+  line-height: 1.25rem;
+  display: flex;
+  flex-direction: column;
+  gap: 1rem;
+  background-color: #91d49bdf;
+  padding: 1rem;
+  border-radius: 1rem;
+  box-shadow: 0 2px 4px rgb(163, 163, 163);
+}
+
+.flexhistroy {
+  display: flex;
+}
+
+.flexhistroy-shrink-0 {
+  flex-shrink: 0;
+}
+
+.error-prompt-heading {
+  color: #6e6e6e;
+  font-size: 0.875rem;
+  line-height: 1.25rem;
+  font-weight: bold;
+  display: flex;
+  align-items: start;
+  flex-direction: column;
+}
+
+.error-prompt-container {
+  display: flex;
+  flex-direction: row;
+}
+
+.historyactive {
+  right: 15 !important;
+  top: 20 !important;
+}
+
+.contenisihistory {
+  display: flex;
+  justify-content: space-between;
+}
+
+.titleisihistory {
+  font-size: 30px;
+  font-weight: bolder;
+}
+
+.tombolclosehistory {
+  width: 20px;
+  cursor: pointer;
+}
+
+.itemcart {
+  display: grid;
+  grid-template-columns: 32% 50% 10%;
+  align-items: center;
+  gap: 1rem;
+  margin-top: 1rem;
+}
+
+.gambaritem {
+  width: 100px;
+  height: 120px;
+  object-fit: contain;
+  padding: 10px;
+  margin-top: 5px;
+}
+
+.itemdetail {
+  display: grid;
+  row-gap: 0.5rem;
+}
+
+.itemtitle {
+  font-size: 1rem;
+  text-transform: uppercase;
+  font-weight: 1000;
+}
+
+.itemprize {
+  font-weight: 900;
+}
+
+.quantity {
+  height: 30px;
+  margin: auto;
+  background-color: transparent;
+  border: 1px solid #000000;
+  border-radius: 7px;
+  text-align: center;
+}
+
+.itemremove {
+  width: 24px;
+  cursor: pointer;
+}
+
+.itemtotal {
+  display: flex;
+  justify-content: flex-end;
+  margin-top: 2rem;
+  border-top: solid #090909;
+  gap: 1rem;
+}
+
+.totalprize {
+  font-weight: 600;
+  color: rgb(0, 0, 0);
+}
+
+.cartbuy {
+  display: flex;
+  margin-left: 130px;
+  margin-top: 30px;
+  --bg: #000;
+  --hover-bg: rgba(173, 203, 74, 1);
+  --hover-text: #000;
+  color: #fff;
+  border: 1px solid var(--bg);
+  border-radius: 4px;
+  padding: 0.8em 2em;
+  background: var(--bg);
+  transition: 0.2s;
+}
+
+.cartbuy:hover {
+  color: var(--hover-text);
+  transform: translate(-0.25rem, -0.25rem);
+  background: var(--hover-bg);
+  box-shadow: 0.25rem 0.25rem var(--bg);
+}
+
+.cartbuy:active {
+  transform: translate(0);
+  box-shadow: none;
+}
+
+.totaltitle {
+  font-size: 1rem;
+  font-weight: 600;
+}
+
+.history {
+  cursor: pointer;
+  display: grid;
+}
+
+.history img {
+  width: 100%;
+}
+
+.history p {
+  font-size: 12px;
+}
+
+.title {
+  margin-left: 40px;
+  padding-top: 170px;
+}
+
+.title p {
+  font-size: 40px;
+  font-weight: bold;
+}
+
+.logorestaurant {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  width: 100%;
+  padding-bottom: 55px;
+}
+
+.wrapdeskripsi{
+  display: flex;
+  justify-content: center;
+  text-align: center;
+  line-height: 2rem;
+}
+
+.deskripsi{
+  width: 500px;
+  margin-bottom: 45px;
+}
+
+.deskripsi p:first-child{
+  font-size: 30px;
+  font-weight: bolder;
+  margin-bottom: 15px;
+}
+
+.deskripsi p:nth-child(2){
+  font-size: 20px;
+  
+}
+
+.garispertama {
+  margin: 10px;
+  display: flex;
+  margin-left: 80px;
+}
+
+.garispertama img {
+  width: 30px;
+}
+
+.titlemenu{
+  display: flex;
+  text-align: center;
+  justify-content: center;
+}
+
+.titlemenu p{
+  font-size: 40px;
+  font-weight: bolder;
+  margin-top: 50px;
+}
+
+
+.card {
+  margin-top: 50px;
+  width: 350px;
+  height: 354px;
+  background: rgb(255, 255, 255);
+  box-shadow: rgba(0, 0, 0, 0.4) 0px 2px 4px,
+    rgba(0, 0, 0, 0.3) 0px 7px 13px -3px, rgba(0, 0, 0, 0.2) 0px -3px 0px inset;
+  border-radius: 20px;
+}
+
+.card img {
+  width: 350px;
+  border-top-right-radius: 20px;
+  border-top-left-radius: 20px;
+}
+
+.card p {
+  margin-top: 5px;
+  text-align: center;
+  font-weight: bold;
+  font-size: 30px;
+}
+
+.garis {
+  margin-left: 280px;
+  height: 1px;
+  width: calc(70vw - 70px);
+  background-color: #c6c6c6;
+}
+
+.flex {
+  display: flex;
+  flex-wrap: wrap;
+  flex-direction: row;
+  justify-content: space-evenly;
+  row-gap: 2.5rem;
+
+  margin-top: 50px;
+}
+
+.conten {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  flex-wrap: wrap;
+  gap: 3rem;
+}
+
+.display {
+  width: 100%;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  width: 360px;
+  height: 458px;
+  border-radius: 30px;
+  background: #ffffff;
+  box-shadow: 15px 15px 30px #bebebe, -15px -15px 30px #ffffff;
+}
+
+.contenimg {
+  display: flex;
+  width: 360px;
+  position: relative;
+  object-fit: contain;
+  border-top-left-radius: 30px;
+  border-top-right-radius: 30px;
+}
+
+.tulisan {
+  margin-top: 10px;
+  width: 100%;
+}
+
+.tulisan > * {
+  display: flex;
+  justify-content: center;
+}
+
+.tulisan > p {
+  font-size: 25px;
+  font-weight: bold;
+}
+
+.checked {
+  margin-top: 10px;
+  color: orange;
+}
+
+.bintang {
+  display: flex;
+}
+
+.bintang h3 {
+  font-size: 15px;
+  margin-top: 7.5px;
+  margin-left: 5px;
+  color: #6e6e6e;
+}
+
+.font {
+  width: 100%;
+  margin-top: 20px;
+  display: flex;
+  flex-direction: row;
+  justify-content: space-evenly;
+}
+
+.harga {
+  display: flex;
+  flex-direction: column;
+  row-gap: 0.3rem;
+}
+
+.harga p:first-child {
+  font-size: 14px;
+  color: #6e6e6e;
+}
+
+.tombolBuy {
+  margin-top: 10px;
+  width: 65px;
+  height: 28px;
+  background: rgba(173, 203, 74, 1);
+  box-shadow: 1.5px 0px rgb(81, 99, 20);
+  color: #fff;
+  outline: none;
+  border: none;
+  border-radius: 5px;
+  cursor: pointer;
+  transition: all 0.5s;
+  border: 1px solid #ababab;
+}
+
+.tombolBuy:hover {
+  border: 1px solid #3e3933;
+  transform: scale(1.05);
+}
+
+.tombolBuy:active {
+  transform: scale(0.95) rotateZ(1.7deg);
+}
+
+.garisflex {
+  border: 1px solid #a7a5a5;
+  transform: rotate(-180deg);
+}
+
+.backfooter{
+  width: 100%;
+  margin-top: 100px;
+}
+
+footer {
+  border-top: 1rem solid #302826e4;
+  background-color: #EADBB2;
+  width: 100%;
+  height: 250px;
+  padding-top: 30px;
+  display: flex;
+  flex-flow: row nowrap;
+  justify-content: space-evenly;
+}
+
+.admisi {
+  display: flex;
+  justify-content: center;
+  flex-direction: column;
+  align-items: center;
+  flex-wrap: wrap;
+}
+
+.admisi p {
+  width: 400px;
+  overflow: hidden;
+  line-height: 1.5rem;
+  max-height: 8rem;
+  -webkit-box-orient: vertical;
+  display: block;
+  display: -webkit-box;
+  overflow: hidden !important;
+  text-overflow: ellipsis;
+  -webkit-line-clamp: 4;
+  text-align: center;
+}
+
+.admisi p:first-child{
+  font-weight: bolder;
+}
+
+.admisi p:nth-child(4){
+  margin-top: 20px;
+  font-weight: bolder;
+}
+
+.logofooter {
+  display: flex;
+  align-items: center;
+  
+}
+
+.logofooter img {
+  width: 180px;
+  
+}
+
+
+@media screen and (max-width: 1282px) {
+  .garis{
+    margin-left: 210px;
+  }
+
+  .wrapdeskripsi{
+    line-height: 2.5rem;
+  }
+
+  .deskripsi{
+    width: 600px;
+  }
+
+  .deskripsi p:first-child{
+    font-size: 40px;
+  }
+  
+  .deskripsi p:nth-child(2){
+    font-size: 30px;
+    
+  }
+}
+
+@media screen and (max-width: 1025px) {
+  .garis{
+    margin-left: 180px;
+  }
+  
+  .wrapdeskripsi{
+    line-height: 2.5rem;
+  }
+
+  .deskripsi{
+    width: 600px;
+  }
+
+  .deskripsi p:first-child{
+    font-size: 35px;
+  }
+  
+  .deskripsi p:nth-child(2){
+    font-size: 25px;
+    
+  }
+}
+
+@media screen and (max-width: 912px) {
+  .garis{
+    margin-left: 160px;
+  }
+
+  .wrapdeskripsi{
+    line-height: 2.5rem;
+  }
+
+  .deskripsi{
+    width: 600px;
+  }
+
+  .deskripsi p:first-child{
+    font-size: 40px;
+  }
+  
+  .deskripsi p:nth-child(2){
+    font-size: 30px;
+    
+  }
+}
+
+@media screen and (max-width: 821px) {
+  .logo {
+    width: 250px;
+    display: flex;
+    align-items: center;
+    margin-right: 10px;
+  }
+
+  .deskripsi{
+    width: 500px;
+  }
+
+  .deskripsi p:first-child{
+    font-size: 35px;
+  }
+  
+  .deskripsi p:nth-child(2){
+    font-size: 25px;
+    
+  }
+  
+  .garis{
+    margin-left: 160px;
+  }
+  .search-form input[type="text"] {
+    width: 230px;
+  }
+  .search-form input[type="text"]:focus {
+    width: 250px;
+  }
+ 
+}
+
+@media screen and (max-width: 800px) {
+  
+}
+
+@media screen and (max-width: 769px) {
+  .logo {
+    width: 220px;
+    display: flex;
+    align-items: center;
+    margin-right: 10px;
+  }
+  .search-form input[type="text"] {
+    width: 230px;
+  }
+  .search-form input[type="text"]:focus {
+    width: 250px;
+  }
+ 
+}
+
+@media screen and (max-width: 700px) {
+  .isicart {
+    width: 300px;
+  }
+
+  .isihistory {
+    width: 300px;
+  }
+  .error-prompt-heading {
+    color: #6e6e6e;
+    font-size: 0.7rem;
+    line-height: 1.5rem;
+  }
+  
+  .admisi p{
+    font-size: 10px;
+  }
+}
+@media screen and (max-width: 541px) {
+  .logo {
+    width: 100px;
+    display: flex;
+    align-items: center;
+    margin-right: 10px;
+  }
+
+  .logo img {
+    width: 200px;
+  }
+
+  .cartbuy{
+    margin-left: 110px;
+  }
+
+  .search-form input[type="text"] {
+    display: none;
+  }
+
+  .search-form button {
+    display: none;
+  }
+
+  .card {
+    margin-top: 50px;
+    width: 280px;
+    height: 284px;
+    
+  }
+  
+  .card img {
+    width: 280px;
+  }
+
+  .card p {
+    margin-top: 5px;
+    font-size: 23px;
+  }
+
+  .garis {
+    margin-left: 115px;
+  }
+
+  .wrapdeskripsi{
+    line-height: 2rem;
+  }
+
+  .deskripsi{
+    width: 400px;
+
+  }
+  
+  .deskripsi p:first-child{
+    font-size: 30px;
+  }
+  
+  .deskripsi p:nth-child(2){
+    font-size: 20px;
+    
+  }
+
+ 
+
+  .restaurant {
+    width: 120%;
+  }
+
+  .restaurantSection {
+    width: calc(100vw - 84px);
+    gap: 1rem;
+    padding: 0;
+  }
+
+  .conten {
+    gap: 1rem;
+  }
+
+  .contenimg {
+    border-top-left-radius: 16px;
+    border-top-right-radius: 16px;
+  }
+
+  .display {
+    width: 205px;
+    margin-left: 1px;
+    height: 275px;
+    border-radius: 15px;
+  }
+
+  .display img {
+    width: 205px;
+  }
+
+  .tulisan > p {
+    font-size: 12px;
+    font-weight: bold;
+  }
+
+  .bintang h3 {
+    font-size: 10px;
+    margin-top: 2px;
+    margin-left: 5px;
+    color: #6e6e6e;
+  }
+
+  .bintang {
+    display: flex;
+    font-size: 10px;
+  }
+
+  .flex {
+    padding-left: 1px;
+  }
+
+  .tombolBuy {
+    margin-top: 8px;
+    margin-left: 7px;
+    width: 30px;
+    height: 15px;
+    font-size: 5px;
+  }
+
+  .garisflex {
+    height: 30px;
+    border: 1px solid #a7a5a5;
+    transform: rotate(-180deg);
+    margin-left: 10px;
+  }
+
+  .harga p:first-child {
+    font-size: 9px;
+    color: #6e6e6e;
+  }
+
+  .harga p:nth-child(2) {
+    font-size: 8px;
+  }
+
+  .font {
+    width: 100%;
+    margin-top: 10px;
+    margin-left: 5px;
+  }
+
+  .admisi {
+    padding: 0;
+  }
+  footer {
+    flex-flow: column nowrap;
+  }
+
+  .logofooter {
+    margin-left: 205px;
+  }
+
+  .logofooter img {
+    width: 130px;
+    height: 130px;
+  }
+  
+  
+}
+
+@media screen and (max-width: 415px) {
+
+  .headerItem {
+    width: calc(100vw - 40px);
+  }
+
+  .cart {
+    width: 25px;
+    margin-left: 70px;
+  }
+
+  .cart p {
+    display: none;
+  }
+
+  .cartbuy {
+    margin-left: 110px;
+  }
+
+  .history {
+    width: 25px;
+  }
+
+  .history p {
+    display: none;
+  }
+
+  .gambarhistory{
+    margin-top: 10px;
+  }
+
+  .profile a i {
+    font-size: 25px;
+  }
+
+  .profile p {
+    display: none;
+  }
+
+  .logo {
+    width: 100px;
+    display: flex;
+    align-items: center;
+    margin-right: 10px;
+  }
+
+  .logo img {
+    width: 200px;
+  }
+
+  .search-form input[type="text"] {
+    display: none;
+  }
+
+  .search-form button {
+    display: none;
+  }
+
+  .deskripsi{
+    width: 350px;
+  }
+
+  .deskripsi p:first-child{
+    font-size: 25px;
+  }
+  
+  .deskripsi p:nth-child(2){
+    font-size: 20px;
+    
+  }
+
+  .title p {
+    font-size: 25px;
+  }
+
+
+  .card {
+    margin-top: 50px;
+    width: 250px;
+    height: 254px;
+    
+  }
+  
+  .card img {
+    width: 250px;
+  }
+
+  .card p {
+    margin-top: 3px;
+    font-size: 20px;
+  }
+
+  .garis {
+    margin-left: 95px;
+  }
+
+
+  .restaurant {
+    width: 120%;
+  }
+
+  .restaurantSection {
+    width: calc(100vw - 84px);
+    gap: 1rem;
+    padding: 0;
+  }
+
+  .conten {
+    gap: 1rem;
+  }
+
+  .contenimg {
+    border-top-left-radius: 16px;
+    border-top-right-radius: 16px;
+  }
+
+  .display {
+    width: 135px;
+    margin-left: 10px;
+    height: 215px;
+    border-radius: 15px;
+  }
+
+  .display img {
+    width: 135px;
+  }
+
+  .tulisan > p {
+    font-size: 12px;
+    font-weight: bold;
+  }
+
+  .bintang h3 {
+    font-size: 10px;
+    margin-top: 2px;
+    margin-left: 5px;
+    color: #6e6e6e;
+  }
+
+  .bintang {
+    display: flex;
+    font-size: 10px;
+  }
+
+  .flex {
+    padding-left: 1px;
+  }
+
+  .tombolBuy {
+    margin-top: 8px;
+    margin-left: 7px;
+    width: 30px;
+    height: 15px;
+    font-size: 5px;
+  }
+
+  .garisflex {
+    height: 25px;
+    border: 1px solid #a7a5a5;
+    transform: rotate(-180deg);
+    margin-left: 10px;
+  }
+
+  .harga p:first-child {
+    font-size: 9px;
+    color: #6e6e6e;
+  }
+
+  .harga p:nth-child(2) {
+    font-size: 8px;
+  }
+
+  .font {
+    width: 100%;
+    margin-top: 10px;
+    margin-left: 5px;
+  }
+
+
+
+
+
+
+
+  .admisi {
+    padding: 0;
+  }
+
+
+  footer {
+    flex-flow: column nowrap;
+  }
+
+  .logofooter {
+    margin-left: 140px;
+  }
+
+  .logofooter img {
+    width: 130px;
+    height: 130px;
+  }
+  
+  
+}
+
+@media screen and (max-width: 394px) {
+  
+}
+
+@media screen and (max-width: 391px) {
+  
+}
+
+@media screen and (max-width: 376px) {
+  .headerItem {
+    width: calc(100vw - 40px);
+  }
+
+  .cart {
+    width: 25px;
+    margin-left: 70px;
+  }
+
+  .cart p {
+    display: none;
+  }
+
+  .cartbuy {
+    margin-left: 110px;
+  }
+
+  .history {
+    width: 25px;
+  }
+
+  .history p {
+    display: none;
+  }
+
+  
+
+  .profile a i {
+    font-size: 25px;
+  }
+
+  .profile p {
+    display: none;
+  }
+
+  .logo {
+    width: 100px;
+    display: flex;
+    align-items: center;
+  }
+
+  .logo img {
+    width: 200px;
+  }
+
+  .search-form input[type="text"] {
+    display: none;
+  }
+
+  .search-form button {
+    display: none;
+  }
+
+  .deskripsi{
+    width: 300px;
+  }
+
+  .deskripsi p:first-child{
+    font-size: 20px;
+  }
+  
+  .deskripsi p:nth-child(2){
+    font-size: 15px;
+    
+  }
+  
+
+  .title p {
+    font-size: 30px;
+  }
+
+
+  .card {
+    margin-top: 50px;
+    width: 250px;
+    height: 254px;
+    
+  }
+  
+  .card img {
+    width: 250px;
+  }
+
+  .card p {
+    margin-top: 3px;
+    font-size: 20px;
+  }
+
+  .garis {
+    margin-left: 95px;
+  }
+
+
+  .restaurant {
+    width: 120%;
+  }
+
+  .restaurantSection {
+    width: calc(100vw - 84px);
+    gap: 1rem;
+    padding: 0;
+  }
+
+  .conten {
+    gap: 1rem;
+  }
+
+  .contenimg {
+    border-top-left-radius: 16px;
+    border-top-right-radius: 16px;
+  }
+
+  .display {
+    width: 135px;
+    margin-left: 2px;
+    height: 215px;
+    border-radius: 15px;
+  }
+
+  .display img {
+    width: 135px;
+  }
+
+  .tulisan > p {
+    font-size: 12px;
+    font-weight: bold;
+  }
+
+  .bintang h3 {
+    font-size: 10px;
+    margin-top: 2px;
+    margin-left: 5px;
+    color: #6e6e6e;
+  }
+
+  .bintang {
+    display: flex;
+    font-size: 10px;
+  }
+
+  .flex {
+    padding-left: 1px;
+  }
+
+  .tombolBuy {
+    margin-top: 8px;
+    margin-left: 7px;
+    width: 30px;
+    height: 15px;
+    font-size: 5px;
+  }
+
+  .garisflex {
+    height: 25px;
+    border: 1px solid #a7a5a5;
+    transform: rotate(-180deg);
+    margin-left: 10px;
+  }
+
+  .harga p:first-child {
+    font-size: 9px;
+    color: #6e6e6e;
+  }
+
+  .harga p:nth-child(2) {
+    font-size: 8px;
+  }
+
+  .font {
+    width: 100%;
+    margin-top: 10px;
+    margin-left: 5px;
+  }
+
+
+
+
+
+
+
+  .admisi {
+    padding: 0;
+  }
+
+  .admisi p {
+    width: 350px;
+  }
+
+  footer {
+    flex-flow: column nowrap;
+  }
+
+  .logofooter {
+    margin-left: 125px;
+  }
+
+  .logofooter img {
+    width: 130px;
+    height: 130px;
+  }
+  
+}
+
+@media screen and (max-width: 361px) {
+  .logo {
+    width: 100px;
+    display: flex;
+    align-items: center;
+  }
+
+  .logo img {
+    width: 180px;
+  }
+  .isicart {
+    width: 250px;
+  }
+
+  .gambarhistory{
+    margin-top: 20px;
+  }
+
+  .cartbuy{
+    margin-left: 85px;
+  }
+
+  .itemtitle {
+    font-size: 0.8rem;
+    margin-left: 10%;
+  }
+
+  .itemprize {
+    font-size: 0.8rem;
+    margin-left: 10%;
+  }
+  .isihistory {
+    width: 250px;
+  }
+
+  .title p {
+    font-size: 25px;
+  }
+  .garis {
+    margin-left: 90px;
+  }
+
+  .admisi p {
+    width: 350px;
+    
+  }
+
+ 
+}

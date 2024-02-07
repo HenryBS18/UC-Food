@@ -1,0 +1,128 @@
+<html lang="en">
+
+<head>
+  <meta charset="UTF-8" />
+  <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Admin</title>
+  <link rel="stylesheet" href="css/restaurantDashboard.css" />
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.3/css/all.min.css" />
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css" />
+  <link href="https://fonts.googleapis.com/css?family=Quicksand" rel="stylesheet" />
+</head>
+
+<body>
+  <header>
+    <div class="header-item">
+      <a href="/">
+        <div class="logo">
+          <img src="images/logos/logo-uc.png" />
+        </div>
+      </a>
+
+      <div class="header-item-right">
+        <a href="/restaurant/orders" class="order">
+          <img src="images/icons/icon-order.svg" id="carticon">
+          <p>Order</p>
+        </a>
+
+        <div class="history">
+          <img src="images/Icons/icon-history.svg" />
+          <p>History</p>
+        </div>
+
+        <div class="greeting-text">
+          <p>Hello, Welcome</p>
+        </div>
+
+        <div class="profile">
+          <a href="/restaurant/profile">
+            <i class="fas fa-user-circle"></i>
+            <p>Profile</p>
+          </a>
+        </div>
+
+        <div class="history-item">
+          <div class="history-item-header">
+            <p>History</p>
+            <img src="Images/Icons/icon-close.svg" class="close-button" />
+          </div>
+        </div>
+      </div>
+    </div>
+  </header>
+
+  <div class="body-outer">
+    <div class="body-item">
+      <div class="dashboard-text">
+        <p>Dashboard</p>
+      </div>
+
+      <div class="dashboard">
+        <div class="information-section dark-red">
+          <div class="information-text">
+            <p>Total Income</p>
+            <p>Rp 0</p>
+          </div>
+          <div class="information-image">
+            <img src="images/icons/icon-income.png">
+          </div>
+        </div>
+
+        <div class="information-section light-brown">
+          <div class="information-text">
+            <p>Total Sales</p>
+            <p>0 Orders</p>
+          </div>
+          <div class="information-image">
+            <img src="images/icons/icon-sales.png">
+          </div>
+        </div>
+
+        <div class="information-section light-green">
+          <div class="information-text" id="totalMenuText">
+            <p>Total Menu</p>
+            <p>0</p>
+          </div>
+          <div class="information-image">
+            <img src="images/icons/icon-menu.png">
+          </div>
+        </div>
+
+        <a href="/restaurant/menu/add">
+          <div class="add-menu-section">
+            <img src="images/icons/icon-add.png">
+            <p>Add Menu</p>
+          </div>
+        </a>
+      </div>
+
+      <div class="menu-section">
+        <p>Menu</p>
+
+        <div class="menu-items"></div>
+      </div>
+    </div>
+  </div>
+
+  <img src="images/wave.png" class="backfooter">
+
+  <footer>
+    <div class="admisi">
+      <p>Admission</p>
+      <p>Point of Indonesia, Jalan Sunset Boulevard, CitraLand City Losari</p>
+      <p>Kawasan Centre, Kota Makassar, Sulawesi Selatan 90224</p>
+      <p>infocsb@ciputra.ac.id</p>
+    </div>
+
+    <div class="logofooter">
+      <img src="images/logos/logo-uc-black.png" />
+    </div>
+  </footer>
+
+  <script src="https://code.jquery.com/jquery-3.7.0.min.js"
+    integrity="sha256-2Pmvv0kuTBOenSvLm6bvfBSSHrUJ+3A7x6P5Ebd07/g=" crossorigin="anonymous"></script>
+  <script src="js/restaurantDashboard.js"></script>
+</body>
+
+</html>
